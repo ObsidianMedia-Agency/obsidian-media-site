@@ -7,13 +7,14 @@
   <style>
     :root {
       --bg: #050505;
-      --bg-soft: #0c0c0e;
+      --bg-soft: #0b0b0d;
       --card: #111114;
-      --text: #f5f5f5;
-      --muted: #a7a7a7;
-      --line: #252529;
-      --accent: #e7e7e7;
-      --accent-soft: #9b9b9b;
+      --text: #f7f2ec;
+      --muted: #aaa29a;
+      --line: #282624;
+      --lava: #c85f24;
+      --lava-bright: #f0762b;
+      --lava-soft: rgba(200, 95, 36, 0.13);
     }
 
     * {
@@ -29,11 +30,11 @@
     body {
       font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 32%),
-        radial-gradient(circle at top left, rgba(255,255,255,0.04), transparent 28%),
+        radial-gradient(circle at 85% 0%, rgba(240, 118, 43, 0.14), transparent 24%),
+        radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.04), transparent 22%),
         var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     a {
@@ -50,17 +51,17 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(5, 5, 5, 0.84);
+      background: rgba(5, 5, 5, 0.9);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
     }
 
     nav {
-      min-height: 76px;
+      min-height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
     }
 
     .logo {
@@ -70,32 +71,23 @@
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
     }
 
     .logo-mark {
-      width: 34px;
-      height: 34px;
-      border: 1px solid var(--accent-soft);
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(240, 118, 43, 0.65);
       transform: rotate(45deg);
-      position: relative;
-      background: linear-gradient(135deg, #222226, #050505 72%);
-      box-shadow: 0 0 30px rgba(255,255,255,0.08);
-    }
-
-    .logo-mark::after {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border: 1px solid #505050;
-      background: #080808;
+      background: linear-gradient(135deg, #2a292b, #050505 70%);
+      box-shadow: 0 0 20px rgba(240, 118, 43, 0.16);
     }
 
     .nav-links {
       display: flex;
-      gap: 26px;
+      gap: 24px;
       color: var(--muted);
-      font-size: 0.92rem;
+      font-size: 0.9rem;
     }
 
     .nav-links a:hover {
@@ -106,284 +98,339 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 13px 20px;
+      padding: 11px 18px;
       border-radius: 999px;
-      background: var(--text);
-      color: #050505;
-      font-weight: 700;
-      border: 1px solid var(--text);
+      background: linear-gradient(135deg, var(--lava-bright), var(--lava));
+      color: #130804;
+      font-weight: 800;
+      border: 1px solid rgba(240, 118, 43, 0.85);
       transition: 0.25s ease;
+      box-shadow: 0 10px 24px rgba(200, 95, 36, 0.17);
+      white-space: nowrap;
     }
 
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(255, 255, 255, 0.12);
+      box-shadow: 0 14px 34px rgba(240, 118, 43, 0.25);
     }
 
     .btn.secondary {
       background: transparent;
       color: var(--text);
       border-color: var(--line);
+      box-shadow: none;
+    }
+
+    .btn.secondary:hover {
+      border-color: rgba(240, 118, 43, 0.5);
     }
 
     .hero {
-      min-height: calc(100vh - 76px);
-      display: grid;
-      align-items: center;
-      padding: 90px 0;
+      padding: 56px 0 40px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 56px;
-      align-items: center;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-main,
+    .hero-side,
+    .card,
+    .info-panel,
+    .cta {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.014));
+      border-radius: 24px;
+    }
+
+    .hero-main {
+      padding: 38px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .eyebrow {
-      color: var(--muted);
+      color: var(--lava-bright);
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 0.78rem;
-      margin-bottom: 18px;
+      letter-spacing: 0.15em;
+      font-size: 0.72rem;
+      font-weight: 800;
+      margin-bottom: 14px;
     }
 
     h1 {
-      font-size: clamp(3rem, 8vw, 6.8rem);
-      line-height: 0.92;
-      letter-spacing: -0.07em;
-      max-width: 820px;
+      font-size: clamp(2.8rem, 7vw, 5.6rem);
+      line-height: 0.96;
+      letter-spacing: -0.065em;
+      max-width: 760px;
     }
 
-    .hero p {
+    .hero-copy {
       color: var(--muted);
-      font-size: 1.12rem;
+      font-size: 1.05rem;
       max-width: 620px;
-      margin: 28px 0 34px;
+      margin: 20px 0 24px;
     }
 
     .hero-actions {
       display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .hero-card {
-      background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 32px;
-      min-height: 440px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      filter: blur(70px);
-      top: -80px;
-      right: -90px;
-    }
-
-    .obsidian-shape {
-      width: 220px;
-      height: 220px;
-      margin: 56px auto 42px;
-      background: linear-gradient(135deg, #303037, #030303 70%);
-      clip-path: polygon(50% 0%, 92% 23%, 82% 78%, 50% 100%, 18% 78%, 8% 23%);
-      border: 1px solid #343438;
-      box-shadow: inset -18px -18px 40px rgba(255,255,255,0.04), 0 24px 70px rgba(0,0,0,0.8);
-      position: relative;
-      z-index: 2;
-    }
-
-    .stat-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      position: relative;
-      z-index: 2;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
-    .stat {
+    .quick-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
       border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 16px;
-      background: rgba(0,0,0,0.28);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.35rem;
-    }
-
-    .stat span {
       color: var(--muted);
-      font-size: 0.82rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.86rem;
+    }
+
+    .pill strong {
+      color: var(--text);
+    }
+
+    .hero-side {
+      padding: 24px;
+      background:
+        radial-gradient(circle at top right, rgba(240,118,43,0.16), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.014));
+      display: grid;
+      gap: 12px;
+      align-content: center;
+    }
+
+    .side-title {
+      font-size: 1.4rem;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      margin-bottom: 4px;
+    }
+
+    .side-copy {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-bottom: 6px;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(0,0,0,0.18);
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--lava-bright);
+      margin-top: 7px;
+      flex: 0 0 auto;
+      box-shadow: 0 0 16px rgba(240,118,43,0.4);
+    }
+
+    .mini-item strong {
+      display: block;
+      font-size: 0.95rem;
+    }
+
+    .mini-item span {
+      color: var(--muted);
+      font-size: 0.86rem;
     }
 
     section {
-      padding: 100px 0;
+      padding: 46px 0;
       border-top: 1px solid var(--line);
     }
 
     .section-heading {
       display: flex;
       justify-content: space-between;
-      gap: 30px;
+      gap: 24px;
       align-items: end;
-      margin-bottom: 38px;
+      margin-bottom: 22px;
     }
 
     .section-heading h2 {
-      font-size: clamp(2rem, 4vw, 4rem);
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
       line-height: 1;
-      letter-spacing: -0.05em;
-      max-width: 660px;
+      letter-spacing: -0.052em;
+      max-width: 640px;
     }
 
     .section-heading p {
       color: var(--muted);
-      max-width: 440px;
+      max-width: 430px;
     }
 
-    .grid-4 {
+    .services-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      gap: 12px;
     }
 
     .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.012));
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 26px;
+      padding: 20px;
+      min-height: 190px;
       transition: 0.25s ease;
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      border-color: #444;
+      transform: translateY(-3px);
+      border-color: rgba(240, 118, 43, 0.46);
+    }
+
+    .number {
+      color: var(--lava-bright);
+      font-size: 0.76rem;
+      margin-bottom: 12px;
+      display: block;
+      font-weight: 800;
     }
 
     .card h3 {
-      margin-bottom: 12px;
-      font-size: 1.12rem;
+      margin-bottom: 8px;
+      font-size: 1.03rem;
     }
 
     .card p {
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
     }
 
-    .number {
-      color: var(--accent-soft);
-      font-size: 0.85rem;
-      margin-bottom: 22px;
-      display: block;
-    }
-
-    .split {
+    .audience-grid {
       display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 18px;
-      align-items: stretch;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
     }
 
-    .dark-panel {
+    .audience-box {
       border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 34px;
+      border-radius: 20px;
+      padding: 18px;
+      background: rgba(200,95,36,0.055);
+    }
+
+    .audience-box h3 {
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .audience-box p {
+      color: var(--muted);
+      font-size: 0.91rem;
+    }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .info-panel {
+      padding: 24px;
+      grid-column: span 4;
       background:
-        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.78)),
-        radial-gradient(circle at 30% 20%, #2b2b31, #070707 58%);
+        radial-gradient(circle at top right, rgba(240,118,43,0.14), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.014));
     }
 
-    .dark-panel h3 {
-      font-size: clamp(1.8rem, 3vw, 3.2rem);
+    .info-panel h2 {
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
       line-height: 1;
-      letter-spacing: -0.05em;
-      margin-bottom: 20px;
+      letter-spacing: -0.052em;
+      margin-bottom: 12px;
     }
 
-    .dark-panel p,
-    .list p {
+    .info-panel p {
       color: var(--muted);
     }
 
-    .list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .list-item {
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 22px;
-      background: rgba(255,255,255,0.025);
-    }
-
-    .list-item h4 {
-      margin-bottom: 8px;
-    }
-
-    .process {
+    .process-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 12px;
     }
 
     .cta {
       text-align: center;
-      background: linear-gradient(145deg, #111114, #050505);
-      border: 1px solid var(--line);
-      border-radius: 34px;
-      padding: 70px 30px;
+      padding: 44px 24px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(240,118,43,0.16), transparent 28%),
+        linear-gradient(145deg, #121214, #050505);
     }
 
     .cta h2 {
-      font-size: clamp(2.2rem, 5vw, 5rem);
-      line-height: 0.95;
-      letter-spacing: -0.06em;
-      max-width: 820px;
-      margin: 0 auto 22px;
+      font-size: clamp(2rem, 5vw, 4.1rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      max-width: 790px;
+      margin: 0 auto 16px;
     }
 
     .cta p {
       color: var(--muted);
-      max-width: 630px;
-      margin: 0 auto 30px;
+      max-width: 650px;
+      margin: 0 auto 22px;
     }
 
     footer {
-      padding: 34px 0;
+      padding: 26px 0;
       border-top: 1px solid var(--line);
       color: var(--muted);
+      font-size: 0.9rem;
     }
 
     .footer-row {
       display: flex;
       justify-content: space-between;
-      gap: 20px;
+      gap: 18px;
       flex-wrap: wrap;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       .hero-grid,
-      .section-heading,
-      .split {
+      .section-heading {
         grid-template-columns: 1fr;
         display: grid;
       }
 
-      .grid-4,
-      .process {
+      .services-grid,
+      .approach-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .info-panel {
+        grid-column: span 4;
+      }
+
+      .process-grid,
+      .audience-grid {
+        grid-template-columns: 1fr;
       }
 
       .nav-links {
@@ -391,20 +438,46 @@
       }
     }
 
-    @media (max-width: 600px) {
-      .grid-4,
-      .process,
-      .stat-row {
+    @media (max-width: 620px) {
+      nav {
+        min-height: 62px;
+      }
+
+      .logo {
+        font-size: 0.76rem;
+      }
+
+      .btn {
+        padding: 10px 13px;
+        font-size: 0.86rem;
+      }
+
+      .hero {
+        padding: 38px 0 34px;
+      }
+
+      .hero-main,
+      .hero-side,
+      .info-panel,
+      .cta {
+        padding: 22px;
+      }
+
+      section {
+        padding: 38px 0;
+      }
+
+      .services-grid,
+      .approach-grid {
         grid-template-columns: 1fr;
       }
 
-      .hero-card {
-        min-height: auto;
+      .info-panel {
+        grid-column: span 1;
       }
 
-      .obsidian-shape {
-        width: 170px;
-        height: 170px;
+      .card {
+        min-height: auto;
       }
     }
   </style>
@@ -425,7 +498,7 @@
           <a href="#contact">Contact</a>
         </div>
 
-        <a href="mailto:hello@obsidianmedia.agency?subject=Free Strategy Call Request" class="btn">Book a Call</a>
+        <a href="https://calendly.com/hello-obsidianmedia/30min" class="btn" target="_blank" rel="noopener">Book a Call</a>
       </nav>
     </div>
   </header>
@@ -433,32 +506,50 @@
   <main id="top">
     <section class="hero">
       <div class="container hero-grid">
-        <div>
+        <div class="hero-main">
           <p class="eyebrow">Digital marketing for startups, local brands, and small businesses</p>
-          <h1>Build attention. Create trust. Generate leads.</h1>
-          <p>
-            Obsidian Media helps growing businesses sharpen their online presence through social media management, Google Ads, Facebook and Instagram ads, SEO, and clear digital strategy.
+          <h1>Turn online attention into real business growth.</h1>
+          <p class="hero-copy">
+            Obsidian Media helps small businesses look credible, get found online, and generate better leads through social media, paid ads, SEO, and clear digital strategy.
           </p>
+
           <div class="hero-actions">
-            <a href="mailto:hello@obsidianmedia.agency?subject=Free Strategy Call Request" class="btn">Book a Free Strategy Call</a>
-            <a href="#services" class="btn secondary">Explore Services</a>
+            <a href="https://calendly.com/hello-obsidianmedia/30min" class="btn" target="_blank" rel="noopener">Book a Free Strategy Call</a>
+            <a href="#services" class="btn secondary">See Services</a>
+          </div>
+
+          <div class="quick-points">
+            <span class="pill"><strong>Custom quotes</strong> based on your needs</span>
+            <span class="pill">Built for <strong>small business growth</strong></span>
+            <span class="pill">Focused on <strong>leads and visibility</strong></span>
           </div>
         </div>
 
-        <div class="hero-card" aria-label="Obsidian Media brand visual">
-          <div class="obsidian-shape"></div>
-          <div class="stat-row">
-            <div class="stat">
-              <strong>01</strong>
-              <span>Strategy</span>
+        <div class="hero-side">
+          <h2 class="side-title">What we focus on first</h2>
+          <p class="side-copy">A clear online presence that helps people understand who you are, what you offer, and why they should choose you.</p>
+
+          <div class="mini-list">
+            <div class="mini-item">
+              <span class="dot"></span>
+              <div>
+                <strong>Get seen</strong>
+                <span>Show up where your customers are looking.</span>
+              </div>
             </div>
-            <div class="stat">
-              <strong>02</strong>
-              <span>Execution</span>
+            <div class="mini-item">
+              <span class="dot"></span>
+              <div>
+                <strong>Build trust</strong>
+                <span>Make your brand look active, professional, and credible.</span>
+              </div>
             </div>
-            <div class="stat">
-              <strong>03</strong>
-              <span>Growth</span>
+            <div class="mini-item">
+              <span class="dot"></span>
+              <div>
+                <strong>Generate leads</strong>
+                <span>Give people a simple next step to contact or book with you.</span>
+              </div>
             </div>
           </div>
         </div>
@@ -468,57 +559,83 @@
     <section id="services">
       <div class="container">
         <div class="section-heading">
-          <h2>Marketing services built around visibility and lead flow.</h2>
-          <p>Every business is different, so every strategy is built around your goals, your market, and your next stage of growth.</p>
+          <h2>What we help with.</h2>
+          <p>Simple, focused services that help your business show up better and turn attention into action.</p>
         </div>
 
-        <div class="grid-4">
+        <div class="services-grid">
           <div class="card">
             <span class="number">01</span>
             <h3>Social Media Management</h3>
-            <p>Content planning, posting, captions, brand voice, and account management to keep your business active and consistent.</p>
+            <p>Content planning, captions, posting, brand voice, and account consistency so your business stays active and professional.</p>
           </div>
           <div class="card">
             <span class="number">02</span>
             <h3>Google Ads</h3>
-            <p>Search campaigns designed to put your business in front of people already looking for what you offer.</p>
+            <p>Search campaigns that help your business appear when people are actively looking for your services.</p>
           </div>
           <div class="card">
             <span class="number">03</span>
             <h3>Facebook & Instagram Ads</h3>
-            <p>Targeted ad campaigns built to create awareness, drive traffic, and turn interest into qualified leads.</p>
+            <p>Targeted campaigns built to create awareness, drive traffic, and generate quote requests or booked calls.</p>
           </div>
           <div class="card">
             <span class="number">04</span>
             <h3>SEO</h3>
-            <p>Website and search optimization to improve visibility, strengthen credibility, and support long-term growth.</p>
+            <p>Website and search improvements that strengthen your visibility, credibility, and long-term organic reach.</p>
+          </div>
+        </div>
+
+        <div class="audience-grid">
+          <div class="audience-box">
+            <h3>Startups</h3>
+            <p>Build your foundation with clear messaging, a stronger presence, and early lead generation.</p>
+          </div>
+          <div class="audience-box">
+            <h3>Local businesses</h3>
+            <p>Reach people in your area who are already searching for what you offer.</p>
+          </div>
+          <div class="audience-box">
+            <h3>Small businesses</h3>
+            <p>Create a sharper online presence without overcomplicating your marketing.</p>
           </div>
         </div>
       </div>
     </section>
 
     <section id="approach">
-      <div class="container split">
-        <div class="dark-panel">
-          <p class="eyebrow">The Obsidian approach</p>
-          <h3>Clean strategy. Sharp creative. No wasted motion.</h3>
-          <p>
-            We focus on the fundamentals that help small businesses look credible, communicate clearly, and create more opportunities online.
-          </p>
-        </div>
+      <div class="container">
+        <div class="approach-grid">
+          <div class="info-panel">
+            <p class="eyebrow">The Obsidian approach</p>
+            <h2>Clear strategy. Strong presence. Better leads.</h2>
+            <p>
+              We make your marketing easier to understand and easier to act on. The goal is to help your business look more professional online, reach the right people, and create more opportunities to turn visitors into customers.
+            </p>
+          </div>
 
-        <div class="list">
-          <div class="list-item">
-            <h4>Built for small business reality</h4>
-            <p>You do not need bloated agency retainers or confusing reports. You need a clear plan, consistent execution, and marketing that supports revenue.</p>
+          <div class="card">
+            <span class="number">01</span>
+            <h3>Start with clarity</h3>
+            <p>We look at your current online presence and identify what needs the most attention first.</p>
           </div>
-          <div class="list-item">
-            <h4>Custom quotes only</h4>
-            <p>Pricing is based on what your business actually needs, whether that is content, ads, SEO, or a complete growth system.</p>
+
+          <div class="card">
+            <span class="number">02</span>
+            <h3>Build the right plan</h3>
+            <p>Your strategy is based on your business goals, audience, market, and budget.</p>
           </div>
-          <div class="list-item">
-            <h4>Lead-focused from the start</h4>
-            <p>The goal is not just to look good online. The goal is to help the right people find you, trust you, and take action.</p>
+
+          <div class="card">
+            <span class="number">03</span>
+            <h3>Keep it simple</h3>
+            <p>You will know what is being done, why it matters, and how it supports growth.</p>
+          </div>
+
+          <div class="card">
+            <span class="number">04</span>
+            <h3>Improve over time</h3>
+            <p>We review what is working, adjust what is not, and keep your marketing moving forward.</p>
           </div>
         </div>
       </div>
@@ -527,25 +644,25 @@
     <section id="process">
       <div class="container">
         <div class="section-heading">
-          <h2>A simple process with a sharp focus.</h2>
-          <p>No overcomplicated agency language. Just clear steps, clean execution, and measurable direction.</p>
+          <h2>How it works.</h2>
+          <p>A simple process designed to get clarity fast and move your marketing in the right direction.</p>
         </div>
 
-        <div class="process">
+        <div class="process-grid">
           <div class="card">
             <span class="number">Step 01</span>
-            <h3>Audit</h3>
-            <p>We review your current online presence, competitors, messaging, and growth opportunities.</p>
+            <h3>Free strategy call</h3>
+            <p>We talk through your business, current marketing, goals, and where you feel stuck.</p>
           </div>
           <div class="card">
             <span class="number">Step 02</span>
-            <h3>Build</h3>
-            <p>We create the strategy, content direction, campaign structure, and execution plan.</p>
+            <h3>Growth plan</h3>
+            <p>You get a clear recommendation based on your audience, market, budget, and priorities.</p>
           </div>
           <div class="card">
             <span class="number">Step 03</span>
-            <h3>Optimize</h3>
-            <p>We track performance, improve what works, and refine the strategy as your business grows.</p>
+            <h3>Launch and optimize</h3>
+            <p>We execute the plan, review performance, and refine the strategy as data comes in.</p>
           </div>
         </div>
       </div>
@@ -554,12 +671,12 @@
     <section id="contact">
       <div class="container">
         <div class="cta">
-          <p class="eyebrow">Custom quotes. No cookie-cutter packages.</p>
-          <h2>Ready to sharpen your online presence?</h2>
+          <p class="eyebrow">Start with a free 30-minute strategy call</p>
+          <h2>Ready to make your business easier to find and easier to choose?</h2>
           <p>
-            Book a free strategy call and let’s map out what your business needs to attract attention, build trust, and generate better leads.
+            Book a free call and let’s map out what your business needs to improve visibility, build trust, and generate better leads.
           </p>
-          <a href="mailto:hello@obsidianmedia.agency?subject=Free Strategy Call Request" class="btn">Book a Free Strategy Call</a>
+          <a href="https://calendly.com/hello-obsidianmedia/30min" class="btn" target="_blank" rel="noopener">Book a Free Strategy Call</a>
         </div>
       </div>
     </section>
